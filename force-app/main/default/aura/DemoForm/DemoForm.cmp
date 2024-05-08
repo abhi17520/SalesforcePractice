@@ -1,0 +1,15 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="username" type="String" />
+    <aura:attribute name="password" type="String" />
+    
+    <div class="c-container">
+    	<lightning:layout >
+        	<lightning:layoutItem padding="around-medium">
+                <div class="input-feild">
+                    <lightning:inputField fieldName="Name" placeholder="Enter Name" />
+                	<lightning:inputField fieldName="Password" placeholder="Enter Password" />
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>
