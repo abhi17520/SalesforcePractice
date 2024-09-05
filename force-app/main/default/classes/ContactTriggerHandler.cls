@@ -4,7 +4,7 @@ public with sharing class ContactTriggerHandler {
         Map<Id, Contact> conMapToUpdate = new Map<Id, Contact>();
         if(!con.isEmpty()){
             for(Contact c: con){
-                if(conMap.get(c.Id).Description  != c.Description){
+                if(c.AccountId != null && conMap.get(c.Id).Description  != c.Description){
                     conMapToUpdate.put(c.AccountId, c);
                 }
             }
