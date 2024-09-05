@@ -1,4 +1,5 @@
 public class AccountTriggerHandler {
+    //To check if Phone field is empty
     public static void errorPhoneEmpty(List<Account> acc){
         if(!acc.isEmpty()){
             for(Account a: acc){
@@ -9,6 +10,7 @@ public class AccountTriggerHandler {
         }
     }
     
+    //To update related contacts
     public static void updateRelatedContatcts(List<Account> acc, Map<Id, Account> accMap){
         Map<Id, Account> accMapToUpdate = new Map<Id, Account>();
         if(!acc.isEmpty()){
