@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="AccountListView">
+        <template if:true={accounts}>
+            <lightning-datatable
+                    key-field="id"
+                    data={accounts}
+                    columns={columns}
+                    hide-checkbox-column="true">
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            Error : {error}
+        </template>
+    </lightning-card>
+</template>
