@@ -5,7 +5,8 @@
                     key-field="id"
                     data={accounts}
                     columns={columns}
-                    hide-checkbox-column="true">
+                    hide-checkbox-column="true"
+                    onrowaction={handleAcountNameClick}>
             </lightning-datatable>
         </template>
         <template if:true={error}>
