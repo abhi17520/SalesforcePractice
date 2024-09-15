@@ -1,0 +1,16 @@
+<template>
+    <div class="slds-m-around_medium slds-grid" style="border: 1px solid black">
+        <lightning-card title="CUSTOM FILE UPLOAD">
+            <lightning-button label="Upload Files" onclick={handleUpload} class="slds-m-around_small"></lightning-button>
+            <input type="file" multiple style="display:none" onchange={handleFileChange} />
+            <template if:true={hasFiles}>
+                <ul>
+                    <template for:each={filesList} for:item="file">
+                        <li key={file.name}>{file.name}</li>
+                    </template>
+                </ul>
+            </template>
+            <lightning-button label="Submit" onclick={handleSubmit} class="slds-m-around_small"></lightning-button>
+        </lightning-card>
+    </div>
+</template>
