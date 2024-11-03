@@ -9,6 +9,33 @@ public class AccountTriggerHandler {
             }
         }
     }
+
+    //To check for duplicate account
+    public static void errorDuplicateAccount(List<Account> acc){
+        Set<String> accNames = new Set<String>();
+        Map<String, Account> existingAccMap = new Map<String, Account>();
+        if(!acc.isEmpty()){
+            for(Account a: acc){
+                accNames.add(a.Name);
+            }
+        }
+        
+        List<Account> accList = [SELECT Id, Name FROM Account WHERE Name IN: accNames];
+        if(!accList.isEmpty()){
+            for(Account a: accList){
+                existingAccMap.put(a.Name, a);
+            }
+
+            if(!acc.isEmpty()){
+                for(Account a: acc){
+                    if(existingAccMap.containsKey(a.Name)){
+                        a.addError('Account with same name already exists.');
+                    }
+                }
+            }
+        }
+        
+    }
     
     //To update related contacts
     public static void updateRelatedContatcts(List<Account> acc, Map<Id, Account> accMap){
