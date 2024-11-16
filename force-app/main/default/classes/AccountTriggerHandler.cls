@@ -11,12 +11,16 @@ public class AccountTriggerHandler {
     }
 
     //To check for duplicate account
-    public static void errorDuplicateAccount(List<Account> acc){
+    public static void errorDuplicateAccount(List<Account> acc, Map<Id, Account> accMap){
         Set<String> accNames = new Set<String>();
         Map<String, Account> existingAccMap = new Map<String, Account>();
         if(!acc.isEmpty()){
             for(Account a: acc){
-                accNames.add(a.Name);
+                if(accMap != null && a.Name != accMap.get(a.Id).Name){
+                    accNames.add(a.Name);
+                } else if(accMap == null){
+                    accNames.add(a.Name);
+                }
             }
         }
         
@@ -57,5 +61,23 @@ public class AccountTriggerHandler {
             }
             update conList;
         }       
+    }
+
+    //To create related contacts
+    public static void createRelatedContacts(List<Account> acc, Map<Id, Account> accMap){
+        List<Contact> conList = new List<Contact>();
+        for(Account a: acc){
+            if((accMap == null || a.Phone != accMap.get(a.Id).Phone) &&  a.Create_Related_Contact__c == true){
+                Contact con = new Contact();
+                con.LastName = a.Name;
+                con.AccountId = a.Id;
+                con.Phone = a.Phone;
+                conList.add(con);
+            }
+        }
+
+        if(!conList.isEmpty()){
+            insert conList;
+        }
     }
 }
